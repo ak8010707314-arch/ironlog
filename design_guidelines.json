@@ -1,0 +1,117 @@
+{
+  "project_info": {
+    "domain": "Fitness, Gym, Sports",
+    "theme": "Dark",
+    "archetype": "Archetype 2: Performance Pro",
+    "vibe": "Command-center focus, tactical minimalism, elite athleticism"
+  },
+  "typography": {
+    "headings": {
+      "family": "Bebas Neue",
+      "weights": ["400"],
+      "usage": "Workout names, major section titles, numbers",
+      "tracking": "tracking-wider"
+    },
+    "body": {
+      "family": "DM Sans",
+      "weights": ["400", "500", "700"],
+      "usage": "Data entry, labels, secondary text",
+      "tracking": "tracking-normal"
+    },
+    "hierarchy": {
+      "h1": "text-4xl sm:text-5xl tracking-wider uppercase",
+      "h2": "text-2xl sm:text-3xl tracking-wider uppercase",
+      "h3": "text-xl uppercase",
+      "body": "text-base",
+      "label": "text-xs font-bold uppercase tracking-[0.1em]"
+    }
+  },
+  "colors": {
+    "background": {
+      "default": "#0A0A0A",
+      "surface": "#141414",
+      "surface_elevated": "#1C1C1E"
+    },
+    "text": {
+      "primary": "#FFFFFF",
+      "secondary": "#A1A1AA",
+      "disabled": "#52525B"
+    },
+    "brand": {
+      "primary": "#FF3B30",
+      "primary_hover": "#FF453A",
+      "primary_active": "#D70015"
+    },
+    "status": {
+      "success": "#32D74B",
+      "warning": "#FF9F0A"
+    },
+    "borders": {
+      "default": "rgba(255, 255, 255, 0.1)",
+      "focus": "#FF3B30"
+    }
+  },
+  "spacing_and_layout": {
+    "container": "w-full max-w-md mx-auto min-h-screen flex flex-col relative bg-[#0A0A0A]",
+    "padding": "p-4 sm:p-6",
+    "density": "Tight (gap-2 to gap-4) for workout logging to maximize screen real estate.",
+    "border_radius": "rounded-lg (Tactical look, not overly soft)",
+    "surfaces": "Flat backgrounds with 1px solid stroke (border-white/10). Avoid soft shadows."
+  },
+  "components": {
+    "buttons": {
+      "primary": "bg-[#FF3B30] text-white font-bold rounded-lg px-6 py-4 w-full uppercase tracking-wider",
+      "secondary": "bg-[#141414] text-white border border-white/10 rounded-lg px-6 py-4",
+      "icon": "p-2 rounded-full bg-white/5 hover:bg-white/10 text-white"
+    },
+    "inputs": {
+      "text": "bg-[#141414] border border-white/10 text-white placeholder-zinc-500 rounded-lg p-4 focus:border-[#FF3B30] focus:ring-1 focus:ring-[#FF3B30]",
+      "workout_set": "Grid row with minimal padding. Columns: Set #, Weight, Reps, Checkbox. Inputs should have text-center and subtle bg (bg-white/5)."
+    },
+    "cards": {
+      "base": "bg-[#141414] border border-white/10 rounded-xl p-4 md:p-6",
+      "exercise_row": "flex items-center justify-between py-3 border-b border-white/5 last:border-0"
+    },
+    "navigation": {
+      "bottom_bar": "fixed bottom-0 left-0 right-0 max-w-md mx-auto h-20 bg-[#0A0A0A]/90 backdrop-blur-xl border-t border-white/10 flex justify-around items-center z-50 pb-safe",
+      "header": "sticky top-0 z-40 bg-[#0A0A0A] px-4 py-4 flex justify-between items-center"
+    }
+  },
+  "icons": {
+    "library": "lucide-react",
+    "style": "Stroke width 2px, crisp, sharp",
+    "usage": "Use icons for Bottom Nav (Home, Dumbbell, BarChart, User) and actions (Plus, Play, Check)."
+  },
+  "motion": {
+    "buttons": "active:scale-95 transition-transform duration-150",
+    "checkbox": "transition-colors duration-200, scale-in on check",
+    "page_transition": "animate-in fade-in slide-in-from-bottom-4 duration-300"
+  },
+  "images": {
+    "onboarding_hero": {
+      "url": "https://images.unsplash.com/photo-1770513649465-2c60c8039806?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1Mjh8MHwxfHNlYXJjaHwxfHxkYXJrJTIwZ3ltJTIwYXRtb3NwaGVyaWN8ZW58MHx8fHwxNzc2NDAxMjY1fDA&ixlib=rb-4.1.0&q=85",
+      "alt": "Dark gym interior with exercise equipment visible",
+      "usage": "Background image for the Login/Signup screen. Apply bg-black/60 overlay to ensure text contrast."
+    },
+    "workout_motivation": {
+      "url": "https://images.unsplash.com/photo-1637430308606-86576d8fef3c?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2Mzl8MHwxfHNlYXJjaHwyfHxkYXJrJTIwZ3ltJTIwd2VpZ2h0c3xlbnwwfHx8fDE3NzY0MDEyNzV8MA&ixlib=rb-4.1.0&q=85",
+      "alt": "Row of exercise machines in a dark gym",
+      "usage": "Use selectively on empty states or success screens."
+    }
+  },
+  "accessibility_and_testing": {
+    "data_testid": "MANDATORY on all interactive elements (e.g., data-testid='start-workout-btn'). Use kebab-case and role-based names.",
+    "contrast": "Ensure white text on dark backgrounds meets APCA guidelines. Use Text Shadow if overlaying text on images."
+  },
+  "instructions_to_main_agent": [
+    "Build the UI focusing on a mobile-first 'App' layout (max-w-md mx-auto) for web.",
+    "Implement the 'Performance Pro' archetype strictly. No pastel colors, no soft UI. Use #0A0A0A base and #FF3B30 (Electric Blaze) accents.",
+    "Workout logging tables must be dense and grid-based. Use pure flex/grid rows to optimize space, inspired by Strong/Hevy patterns.",
+    "Incorporate a persistent bottom navigation bar for core routes, using fixed max-w-md layout.",
+    "Include an immersive onboarding/login screen using the provided onboarding_hero image URL with a dark overlay.",
+    "For the Analytics section, use Recharts with pure white (#FFFFFF) for the primary metric line and Electric Blaze (#FF3B30) for accents, against #141414 card backgrounds.",
+    "Do NOT use 'Inter' for headings. Import and use 'Bebas Neue' for punchy headings. Use 'DM Sans' for body text. Add these via Google Fonts in index.html.",
+    "CRITICAL: Replace default Shadcn component radii with rounded-lg to maintain the 'Tactical Minimalism' look.",
+    "Ensure the 'Set Checkbox' changes to a solid Electric Green (#32D74B) when a set is completed, to provide immediate positive feedback."
+  ]
+}
