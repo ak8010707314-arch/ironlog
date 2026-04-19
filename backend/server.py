@@ -13,7 +13,7 @@ import bcrypt
 import jwt as pyjwt
 import requests
 
-from exercises_seed import PRELOADED_EXERCISES
+# from exercises_seed import PRELOADED_EXERCISES
 
 @app.get("/")
 def home():
