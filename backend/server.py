@@ -15,6 +15,10 @@ import requests
 
 from exercises_seed import PRELOADED_EXERCISES
 
+@app.get("/")
+def home():
+    return {"message": "Ironlog API is running 🚀"}
+
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
