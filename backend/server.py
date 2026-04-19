@@ -502,7 +502,7 @@ async def strength_progress(exercise_id: str, current: User = Depends(get_curren
     cursor = db.workouts.find(
         {"user_id": current.user_id, "exercises.exercise_id": exercise_id},
         {"_id": 0},
-    ).sort("finished_at", 1)
+    ).sort("finished_at", 1).limit(500)
     workouts = await cursor.to_list(length=500)
     points = []
     for w in workouts:
@@ -534,7 +534,7 @@ async def weekly_volume(current: User = Depends(get_current_user)):
     cursor = db.workouts.find(
         {"user_id": current.user_id, "finished_at": {"$gte": start}},
         {"_id": 0, "finished_at": 1, "total_volume": 1},
-    ).sort("finished_at", 1)
+    ).sort("finished_at", 1).limit(1000)
     items = await cursor.to_list(length=1000)
     # bucket by ISO week
     buckets: dict = {}
@@ -554,7 +554,10 @@ async def weekly_volume(current: User = Depends(get_current_user)):
 @api_router.get("/analytics/prs")
 async def personal_records(current: User = Depends(get_current_user)):
     """Return max weight lifted per exercise (PR)."""
-    cursor = db.workouts.find({"user_id": current.user_id}, {"_id": 0})
+    cursor = db.workouts.find(
+        {"user_id": current.user_id},
+        {"_id": 0, "exercises": 1, "finished_at": 1},
+    ).limit(2000)
     workouts = await cursor.to_list(length=2000)
     prs: dict = {}
     for w in workouts:
@@ -580,7 +583,10 @@ async def personal_records(current: User = Depends(get_current_user)):
 @api_router.get("/analytics/summary")
 async def summary(current: User = Depends(get_current_user)):
     """Return totals + streak for dashboard."""
-    cursor = db.workouts.find({"user_id": current.user_id}, {"_id": 0, "finished_at": 1, "total_volume": 1})
+    cursor = db.workouts.find(
+        {"user_id": current.user_id},
+        {"_id": 0, "finished_at": 1, "total_volume": 1},
+    ).limit(2000)
     items = await cursor.to_list(length=2000)
     total_workouts = len(items)
     total_volume = sum(float(w.get("total_volume", 0)) for w in items)

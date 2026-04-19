@@ -50,8 +50,11 @@ export default function Login() {
   const handleGoogle = async () => {
     setGoogleLoading(true);
     try {
-      const base = process.env.EXPO_PUBLIC_BACKEND_URL as string;
-      const redirectUrl = `${base}/auth-callback`;
+      // REMINDER: DO NOT HARDCODE THE URL, OR ADD ANY FALLBACKS OR REDIRECT URLS, THIS BREAKS THE AUTH
+      const redirectUrl =
+        typeof window !== 'undefined' && window.location?.origin
+          ? `${window.location.origin}/auth-callback`
+          : `${process.env.EXPO_PUBLIC_BACKEND_URL}/auth-callback`;
       const authUrl = `https://auth.emergentagent.com/?redirect=${encodeURIComponent(redirectUrl)}`;
       const result = await WebBrowser.openAuthSessionAsync(authUrl, redirectUrl);
       if (result.type === 'success' && result.url) {
